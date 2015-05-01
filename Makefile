@@ -1,6 +1,17 @@
+.PHONY: run clean
+
+all: blink movement
+
 blink:
-	g++ -o test blink.cpp -lm -lGL -lGLU `sdl-config --libs`
+	g++ -o blink blink.cpp -lm -lGL -lGLU `sdl-config --libs`
 movement:
 	g++ -o movement movement.cpp `pkg-config glu --cflags --libs` `sdl-config --libs --cflags`
 clean:
-	rm test
+	rm -f blink movement
+run: blink
+	./blink
+
+run_blink: blink
+	./blink
+run_movement: movement
+	./movement
