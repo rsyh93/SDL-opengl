@@ -1,13 +1,12 @@
+PROG = blink movement
 .PHONY: run clean
 
-all: blink movement
+all: $(PROG)
 
-blink:
-	g++ -o blink blink.cpp -lm -lGL -lGLU `sdl-config --libs`
-movement:
-	g++ -o movement movement.cpp `pkg-config glu --cflags --libs` `sdl-config --libs --cflags`
+$(PROG):
+	g++ -o $@ $@.cpp -lm `pkg-config glu --cflags --libs` `sdl-config --libs`
 clean:
-	rm -f blink movement
+	rm -f $(PROG)
 run: blink
 	./blink
 
